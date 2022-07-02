@@ -6,26 +6,15 @@
     </div>
   <div class="bg" >
     <p @click="test" ref="description" style="color: white">
-2021 / mirandabiondidesign
-Menu
-MIRANDA BIONDI
-She is a creative designer from Milan specializing in
-graphic identity, visual, and design. Miranda Biondi
-Design is her brand and studio.
-It has no labels or limits;
-it mixes, acts, and creates.
-It focuses on arts and
-design in all its forms.
-Fluid in thought and
-creativity, with a strong
-and pungent personality</p>
+      2021 / maximepalminodesign
+      MAXIME PALMINO
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p>
     <button @click="test">WORKS</button>
-   <!-- <div class="three" ref="three">
-<ClientOnly>           
-   <CardsWork />
-</ClientOnly>
-</div> -->
-
+    <!-- <div class="three" ref="three">
+    <ClientOnly>           
+      <CardsWork />
+    </ClientOnly>
+    </div> -->
     <div class="svg" >
       <div  class="leavesAnimation" ref="leavesAnimation" >
         <Vue3Lottie :animationData="Leaves" :loop="true"  delay="4020"  />
@@ -84,13 +73,14 @@ export default {
 		    const { red } = this.$refs;
         const { starsContainer } = this.$refs;
         const { description } = this.$refs;
-            const { leavesAnimation } = this.$refs;
-    const { handAnimation } = this.$refs;
-    const { handsAnimation } = this.$refs;
+        const { leavesAnimation } = this.$refs;
+        const { handAnimation } = this.$refs;
+        const { handsAnimation } = this.$refs;
 
           if (this.state == false) {
             
               this.state = true
+
               gsap.to(starsContainer, {
               //  filter:"blur(20px)",
                duration: 2,
@@ -118,34 +108,34 @@ export default {
               gsap.to(red, {
                 opacity:0, duration: 0.3,
               })
-              } else {
+          } else {
 
               this.state = false
      
-           gsap.to(starsContainer, {
-                           filter:"blur(0px)",
+                gsap.to(starsContainer, {
+                                filter:"blur(0px)",
 
-               scale: 1,
-               rotate: 0,
-               duration: 3,
-                ease: "expo.out",
-              })
-              gsap.to(three, {
-                opacity: 0, scale: 0.5
-              })
-              gsap.to(leavesAnimation, {
-                scale: 1, rotate: 0, duration: 3, filter:"blur(0px)", ease: "expo.out",
-              })
-              gsap.to(svg, {
-                opacity: 1
-              })              
-              gsap.to(circle, {
-                opacity:1, duration: 0.5, delay: 0.3,
+                    scale: 1,
+                    rotate: 0,
+                    duration: 3,
+                      ease: "expo.out",
+                    })
+                    gsap.to(three, {
+                      opacity: 0, scale: 0.5
+                    })
+                    gsap.to(leavesAnimation, {
+                      scale: 1, rotate: 0, duration: 3, filter:"blur(0px)", ease: "expo.out",
+                    })
+                    gsap.to(svg, {
+                      opacity: 1
+                    })              
+                    gsap.to(circle, {
+                      opacity:1, duration: 0.5, delay: 0.3,
 
-                })
-              gsap.to(red, {
-                opacity:1, duration: 0.3, delay: 0.4,
-                })
+                    })
+                    gsap.to(red, {
+                      opacity:1, duration: 0.3, delay: 0.4,
+                    })
               }   
       
   } 
@@ -202,12 +192,15 @@ export default {
 .leavesAnimation {
   position: absolute;
 }
+
 h1 {
   color: white;
 }
+
 .quenTwo {
   pointer-events: none;
 }
+
 .three {
   position:fixed;
   top: -120vh;
@@ -217,9 +210,11 @@ h1 {
   left: 15%;
   opacity: 0;
 }
+
 body {
   overflow: hidden;
 }
+
 .ww {
   pointer-events: none;
 }
@@ -228,14 +223,14 @@ body {
   position: absolute;
   width: 100%;
   height: 100vh;
-    /* pointer-events: none; */
-
+  /* pointer-events: none; */
 }
+
 .svg {
   position: absolute;
   width: 100%;
   height: 100vh;
-/* pointer-events: none; */
+  /* pointer-events: none; */
 }
 
 .abs {
@@ -261,8 +256,7 @@ body {
   position: absolute;
   height: 100vh;
   width: 100%;
-      /* pointer-events: none; */
-
+  /* pointer-events: none; */
   /* z-index: 9999; */
 
 }
@@ -278,12 +272,14 @@ p {
 font-family: 'Helvetica Neue', Arial; font-size: 16px;
 z-index: 9999;
 }
+
 button {
   display: flex;
   position: absolute;
   justify-content: center;
   align-items: flex-end;
-font-family: 'Helvetica Neue', Arial; font-size: 16px;
-z-index: 9999;
+  font-family: 'Helvetica Neue', Arial; font-size: 16px;
+  z-index: 9999;
 }
+
 </style>
