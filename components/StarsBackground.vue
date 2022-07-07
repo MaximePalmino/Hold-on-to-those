@@ -1,9 +1,9 @@
 <template>
-  <Renderer  ref="renderer" resize :orbit-ctrl="{ enableDamping: false, dampingFactor: 0.0015, autoRotate : true, }" shadow >
+  <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: false, dampingFactor: 0.0015, autoRotate : true, }" shadow >
     <Camera :position="{ y: -100, z: 100 }" />
-    <Scene>
+    <Scene >
       <!-- <SpotLight color="yellow" :intensity="0.5" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" /> -->
-      <SpotLight color="blue" :intensity="intensity" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
+      <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
         <SphereGeometry :radius="0.4" />
@@ -38,10 +38,9 @@ import {
   Scene,
   UnrealBloomPass,
 } from 'troisjs';
+
 export default {
-  props: {
-    intensity: String,
-  },
+
   components: {
     Camera,
     EffectComposer,
