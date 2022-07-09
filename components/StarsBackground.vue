@@ -1,12 +1,13 @@
 <template>
-  <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: false, dampingFactor: 0.0015, autoRotate : true, }" shadow >
+  <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: true, dampingFactor: 0.0050, autoRotate : true, autoRotateSpeed: 0.4 }" shadow >
     <Camera :position="{ y: -100, z: 100 }" />
     <Scene >
-      <!-- <SpotLight color="yellow" :intensity="0.5" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" /> -->
+      <SpotLight color="yellow" :intensity="0.5" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
+      <SpotLight color="yellow" :intensity="2" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
-        <SphereGeometry :radius="0.4" />
+        <SphereGeometry :radius="0.5" />
         <!-- <PlaneGeometry :width="10" :height="5" /> -->
         <PhongMaterial />
         
@@ -16,7 +17,7 @@
     </Scene>
     <EffectComposer>
       <RenderPass />
-      <UnrealBloomPass :strength="2" />
+      <UnrealBloomPass :strength="1.5" />
     </EffectComposer>
   </Renderer>
 </template>
@@ -57,7 +58,7 @@ export default {
   },
   setup() {
     return {
-      NUM_INSTANCES: 800,
+      NUM_INSTANCES: 1200,
     };
   },
   mounted() {

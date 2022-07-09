@@ -13,21 +13,25 @@
       MAXIME PALMINO
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p> 
 
-    <img @click="test" @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" class="absolute button" ref="lys"
-      src="button-03.svg"
-      alt="triangle with all three sides equal" />
+
+    <div class="container-lys" ref="lysCircle">
+      <img  @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" @click="test"  class="absolute button" ref="lys"
+        src="button-03.svg"
+        alt="triangle with all three sides equal" />
+    </div>
+
 
       <div  class=" absolute" ref="leavesAnimation" >
-        <Vue3Lottie :animationData="Leaves" :loop="true"  delay="4020" width="28.5%"/>
+        <Vue3Lottie :animationData="Leaves" :loop="true"  :delay=4020 width="100%"/>
       </div>
       <div  class="absolute" ref="fougeresAnimation" >
-        <Vue3Lottie :animationData="Fougeres" :loop="true"  delay="2000"  />
+        <Vue3Lottie :animationData="Fougeres" :delay=2000  :loop="true"   />
       </div>
-      <div  class="absolute" ref="eyeAnimation" @click="eyeAnimationLoop"  >
-        <Vue3Lottie :animationData="Eye" :loop="false" delay="2000" width="15%"   />
+      <div  class="absolute" ref="eyeAnimation" @click="eyeAnimationLoop">
+        <Vue3Lottie :animationData="Eye" :loop="false" :delay=2000 width="15.5%"   />
       </div>
       <div  class="absolute" ref="handsAnimation"  >
-        <Vue3Lottie :animationData="Hands"  delay="3000" width="100%"   />
+        <Vue3Lottie :animationData="Hands"  :delay=3000 width="100%"   />
       </div>
       <div class="absolute"  ref="svg">
         <Vue3Lottie :animationData="Flowers" :loop="true" width="100%"  />
@@ -50,7 +54,7 @@ import { Vue3Lottie } from 'vue3-lottie'
 import TroisTest from './components/TroisTest.vue'
 import 'vue3-lottie/dist/style.css'
 import Flowers from './florale6.json'
-import Leaves from './coloredLeavesLoop2.json'
+import Leaves from './coloredLeavesLoop.json'
 import {gsap} from "gsap";
 import Hands from './hands.json'
 import Fougeres from'./fougereLoop.json'
@@ -79,13 +83,12 @@ export default {
 
       lysHoverEnter() {
         const { lys } = this.$refs;
-        gsap.to(lys, {rotate: 180, ease: "expo.out", scale: 1.4})
-
+         gsap.to(lys, {rotate: 180, ease: "expo.out", scale: 1.4, duration: 1})
       },
 
       lysHoverExit() {
         const { lys } = this.$refs;
-        gsap.to(lys, {rotate: 0, ease: "expo.out", scale: 1})
+        gsap.to(lys, {rotate: 0, ease: "expo.out", scale: 1, duration: 1})
 
       },
 
@@ -113,17 +116,18 @@ export default {
               gsap.to(svg, {autoAlpha: 0})
               gsap.to(leavesAnimation, {scale: 5,rotate: 90, duration: 2, filter:"blur(20px)", ease: "expo.out"})
               gsap.to(eyeAnimation, { scale:0.5,rotate: 360, duration:1, autoAlpha: 0,  ease: "expo.out"})
-              gsap.to(handsAnimation, {scale: 5, rotate: 70, duration: 2, filter:"blur(20px)",  ease: "expo.out"})
+              gsap.to(handsAnimation, {scale: 4, rotate: 70, duration: 2, filter:"blur(20px)",  ease: "expo.out"})
               gsap.to(fougeresAnimation, {scale: 0.5,rotate: 100, duration:1, filter:"blur(20px)", autoAlpha: 0,  ease: "expo.out"})
               gsap.to(circle, {autoAlpha:0, duration: 0.3})
               gsap.to(red, {autoAlpha:0, duration: 0.3})
-              // gsap.to(starsContainer, {filter:"blur(4px)", duration: 2, scale: 3, rotate: 60})
+              // gsap.to(starsContainer, {filter:"blur(4px)", duration: 2, scale: 1.7})
 
           } else {
 
               this.state = false
 
               gsap.to(lys, {rotate: 0, scale: 1})
+              gsap.to(description, { autoAlpha: 1})
               gsap.to(fougeresAnimation, {scale:1, rotate: 0, duration: 2, filter:"blur(0px)", autoAlpha: 1,  ease: "expo.out"})
               gsap.to(eyeAnimation, {scale:1, rotate: 0, duration: 2,  filter:"blur(0px)",autoAlpha: 1,  ease: "expo.out"})
               gsap.to(starsContainer, {filter:"blur(0px)", scale: 1, rotate: 0, duration: 3, ease: "expo.out"})
@@ -146,8 +150,10 @@ export default {
       const { fougeresAnimation } = this.$refs;
       const { eyeAnimation } = this.$refs;
       const { lys } = this.$refs;
+      const { lysCircle } = this.$refs;
 
-      gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 0.3, delay: 2})
+      gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
+      gsap.from( lysCircle, {autoAlpha: 0, rotate: 90, scale: 1.4, duration: 1, delay: 1.8})
       gsap.from( leavesAnimation, {autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.from( fougeresAnimation, {autoAlpha: 0, duration: 1, delay: 2})
       gsap.from( eyeAnimation, {autoAlpha: 0, duration: 0.2, delay: 2})
@@ -179,9 +185,25 @@ h1 {
   position: relative;
   height: 100vh;
   width: 100%;
+  background-color: rgb(0, 0, 0);
+  
 }
 .stars__container {
   position: absolute;
+}
+
+.container-lys {
+  position: absolute;
+  width: 75px;
+  height: 75px;
+  top: 87%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius:  50%;
+  border:rgb(255, 255, 255) 1px solid;
+  background-color: rgb(10, 10, 10);
+  z-index: 9999 !important;
+
 }
 .absolute {
   width: 100%;
@@ -190,13 +212,11 @@ h1 {
 }
 
 .button {
-  width: 5%;
-  height: 10vh;
-   position: absolute;
-  top: 80%;
-  left: 48%;
-  z-index: 9999;
-  transition: all 0.4s ease-out;
+  
+  width: 100%;
+  height: 75px;
+
+
 }
 .button:hover {
   cursor: pointer;
