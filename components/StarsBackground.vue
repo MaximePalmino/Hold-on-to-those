@@ -1,10 +1,25 @@
 <template>
   <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: true, dampingFactor: 0.0050, autoRotate : true, autoRotateSpeed: 0.4 }" shadow >
     <Camera :position="{ y: -100, z: 100 }" />
-    <Scene >
+    <Scene>
+>
+       <NoisyImage
+        src="https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"
+        :width="2000"
+        :height="1000"
+        :time-coef="0.0007"
+        :noise-coef="4000"
+        :z-coef="1"
+        :disp-coef="0.007"
+        :position="{ x: 0, y: 0, z: 0 }"
+      />
+      <!-- https://images.unsplash.com/photo-1576174464184-fb78fe882bfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80 -->
+<!-- https://images.unsplash.com/photo-1580432551600-8c9768628a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=8 -->
+<!-- https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80-->
+
       <SpotLight color="yellow" :intensity="0.5" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="yellow" :intensity="2" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
-      <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
+     <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
         <SphereGeometry :radius="0.5" />
@@ -16,15 +31,17 @@
 
     </Scene>
     <EffectComposer>
-      <RenderPass />
-      <UnrealBloomPass :strength="1.5" />
+       <RenderPass />
+      <!-- <UnrealBloomPass :strength="1.5" />  -->
     </EffectComposer>
   </Renderer>
 </template>
 
 <script>
 import { Object3D, MathUtils } from 'three';
+import NoisyImage from 'troisjs/src/components/noisy/NoisyImage.js';
 import NoisyPlane from 'troisjs/src/components/noisy/NoisyPlane.js';
+import {gsap} from "gsap";
 
 import {
   Camera,
@@ -54,6 +71,7 @@ export default {
     SpotLight,
     Scene,
     UnrealBloomPass,
+    NoisyImage,
     NoisyPlane
   },
   setup() {
@@ -62,6 +80,9 @@ export default {
     };
   },
   mounted() {
+    const {noisyPlane } = this.$refs
+    gsap.from( noisyPlane, {opacity: 0, autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
+    console.log(noisyPlane)
     // init instanced mesh matrix
     const imesh = this.$refs.imesh.mesh;
     const dummy = new Object3D();
