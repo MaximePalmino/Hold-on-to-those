@@ -8,9 +8,9 @@
         :width="2000"
         :height="1000"
         :time-coef="0.0007"
-        :noise-coef="4000"
-        :z-coef="1"
-        :disp-coef="0.007"
+        :noise-coef="1000"
+        :z-coef="2"
+        :disp-coef="0.000"
         :position="{ x: 0, y: 0, z: 0 }"
       />
       <!-- https://images.unsplash.com/photo-1576174464184-fb78fe882bfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80 -->
