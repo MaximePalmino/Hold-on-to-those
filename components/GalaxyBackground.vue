@@ -12,29 +12,17 @@
         :z-coef="2"
         :disp-coef="0.000"
         :position="{ x: 0, y: 0, z: 0 }"
-        
       />
-
       <!-- https://images.unsplash.com/photo-1576174464184-fb78fe882bfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80 -->
 <!-- https://images.unsplash.com/photo-1580432551600-8c9768628a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=8 -->
 <!-- https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80-->
 
-      <SpotLight color="yellow" :intensity="0.5" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
-      <SpotLight color="yellow" :intensity="2" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
-     <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
-      <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
-      <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
-        <SphereGeometry :radius="0.5" />
-        <!-- <PlaneGeometry :width="10" :height="5" /> -->
-        <PhongMaterial />
-        
-      </InstancedMesh>
+     
 
 
     </Scene>
     <EffectComposer>
        <RenderPass />
-      <UnrealBloomPass :strength="0.1" /> 
     </EffectComposer>
   </Renderer>
 </template>
@@ -43,7 +31,6 @@
 import { Object3D, MathUtils } from 'three';
 import NoisyImage from 'troisjs/src/components/noisy/NoisyImage.js';
 import NoisyPlane from 'troisjs/src/components/noisy/NoisyPlane.js';
-import {gsap} from "gsap";
 
 import {
   Camera,
@@ -76,28 +63,8 @@ export default {
     NoisyImage,
     NoisyPlane
   },
-  setup() {
-    return {
-      NUM_INSTANCES: 1200,
-    };
-  },
-  mounted() {
-    const {noisyPlane } = this.$refs
-    gsap.from( noisyPlane, {opacity: 0, autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
-    console.log(noisyPlane)
-    // init instanced mesh matrix
-    const imesh = this.$refs.imesh.mesh;
-    const dummy = new Object3D();
-    const { randFloat: rnd, randFloatSpread: rndFS } = MathUtils;
-    for (let i = 0; i < this.NUM_INSTANCES; i++) {
-      dummy.position.set(rndFS(400), rndFS(400), rndFS(400));
-      const scale = rnd(0.2, 1);
-      dummy.scale.set(scale, scale, scale);
-      dummy.updateMatrix();
-      imesh.setMatrixAt(i, dummy.matrix);
-    }
-    imesh.instanceMatrix.needsUpdate = true;
-  },
+
+
 };
 </script>
 

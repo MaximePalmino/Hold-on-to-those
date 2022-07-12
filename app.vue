@@ -141,7 +141,7 @@ export default {
               gsap.to(handsAnimation, {scale: 1, rotate: 0, duration: 2, filter:"blur(0px)", ease: "expo.out"})
               gsap.to(circle, {autoAlpha:1, duration: 0.5})
               gsap.to(red, {autoAlpha: 1, duration: 0.3})
-                            gsap.to(starsContainer, {filter:"blur(0px)", duration: 2,  ease: "expo.out"})
+              gsap.to(starsContainer, {filter:"blur(0px)", duration: 2,  ease: "expo.out"})
 
           }   
   } 
@@ -158,8 +158,10 @@ export default {
       const { eyeAnimation } = this.$refs;
       const { lys } = this.$refs;
       const { lysCircle } = this.$refs;
+      const { starsContainer } = this.$refs;
 
       gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
+      gsap.from( starsContainer, {autoAlpha: 0, rotate: 15, duration: 3.4, delay: 1.5, ease: "expo.out"})
       gsap.from( lysCircle, {autoAlpha: 0, rotate: 90, scale: 1.4, duration: 1, delay: 1.8})
       gsap.from( leavesAnimation, {autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.from( fougeresAnimation, {autoAlpha: 0, duration: 1, delay: 2})
@@ -200,18 +202,11 @@ h1 {
   position: absolute;
 }
 
-
-
-
 .scaleLeaves {
   transition: all 1s ease-out;
   transform: scale(5) rotate(90deg);
   filter: blur(20px);
 }
-
-
-
-
 
 .container-lys {
   position: absolute;
@@ -239,6 +234,7 @@ h1 {
   
   width: 100%;
   height: 75px;
+  z-index: 9999 !important;
 
 
 }
@@ -248,13 +244,11 @@ h1 {
 }
 
 p {
-  width: 20%;
-  display: flex;
-  height: 100vh;
-  padding: 10px 30px;
+
   position: absolute;
-  justify-content: center;
-  align-items: flex-end;
+    top: 86%;
+  left: 2%;
+width: 20%;
   font-family: 'Helvetica Neue', Arial; font-size: 16px;
   z-index: 9998;
   color: black;

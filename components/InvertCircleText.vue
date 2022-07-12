@@ -26,11 +26,16 @@ export default {
 <style scoped>
 #container { margin: 0%;  }
 
-#circle { display: flex; justify-content: center; align-items: center; }
+#circle { 
+    position: absolute;   
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  overflow: hidden;
+ }
 
 #circle text { font-family: 'Helvetica Neue', Arial; font-size: 16px; font-weight: bold;  }
 
-#circle svg {  width: 44vw; height: 100vh;
+#circle svg { width: 40vw; height: 100vh;
 
   -webkit-animation-name: rotate;
      -moz-animation-name: rotate;
