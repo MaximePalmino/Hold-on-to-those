@@ -1,9 +1,11 @@
 <template>
 
-  <div class="main-container" >
 
-    
-    <div ref="starsContainer" class="stars__container">
+
+
+
+  <div class="main-container" id="js-scroll"  data-scroll>
+    <div ref="starsContainer" class="stars__container" data-scroll data-scroll-speed="1" >
       <ClientOnly>
             <StarsBackground />
       </ClientOnly>
@@ -22,17 +24,18 @@
     </div>
 
       <div   class="absolute" ref="leavesAnimation" >
-        <Vue3Lottie :animationData="Leaves"  :delay=4020 :width="animatedNumber + '%'" height="100vh"/>
+        <Vue3Lottie :animationData="Leaves"  :delay=4020 />
       </div>
       <div  class="absolute" ref="fougeresAnimation" >
         <Vue3Lottie :animationData="Fougeres" :delay=2000    />
       </div>
       <div  class="absolute" ref="eyeAnimation" @click="eyeAnimationLoop">
-        <Vue3Lottie :animationData="Eye" :loop="false" :delay=2000 width="15.5%"   />
+        <Vue3Lottie :animationData="Eye" :loop="false" :delay=2000   />
       </div>
-      <div  class="absolute" ref="handsAnimation"  >
-        <Vue3Lottie :animationData="Hands"  :delay=3000 width="100%"   />
-      </div>
+
+        <div class="absolute hands" ref="handsAnimation"  >
+          <Vue3Lottie :animationData="Hands"  :delay=3000 width="100%"   />
+        </div>
       <div class="absolute"  ref="svg">
         <Vue3Lottie :animationData="Flowers"  width="100%"  />
       </div>
@@ -46,6 +49,11 @@
   </div>
 
 </div>
+<!-- <div class="footer" data-scroll data-scroll-speed="1" >
+
+<Footer/>
+
+</div> -->
 </template>
 
 
@@ -77,7 +85,7 @@ export default {
       Eye,
       state: false,
       eyeState: false,
-
+      galaxyBg: "../a2146.jpeg"
       
     }
   },
@@ -111,43 +119,47 @@ export default {
         const { eyeAnimation} = this.$refs;
         const { lys } = this.$refs;
 
-          if (this.state == false) {
 
-              this.state = true
+          if (this.state === false) {
+
 
               gsap.to(lys, { rotate: 0, ease: "expo.out", scale: 1})
-              gsap.to(description, { autoAlpha: 0})
+              gsap.to(description, { autoAlpha: 0, opacity: 0})
               gsap.to(three, {autoAlpha: 1, delay: 1.2, duration: 2, scale: 1})
               gsap.to(svg, {autoAlpha: 0})
-              gsap.to(leavesAnimation, {scale: 0.7, rotation: -100,  duration:1,  ease: "expo.out", opacity: 0, filter:"blur(20px)" })
-              gsap.to(eyeAnimation, { scale:0.5,rotate: 360, duration:1, autoAlpha: 0,  ease: "expo.out"})
-              gsap.to(handsAnimation, {scale: 4, rotate: 70, duration: 2, filter:"blur(20px)",  ease: "expo.out"})
+              gsap.to(leavesAnimation, {scale: 0.7, rotation: -100,  duration:1,  ease: "expo.out", opacity: 0, filter:"blur(20px)"})
+              gsap.to(eyeAnimation, { scale:0.5,rotate: 360, duration:1.5, autoAlpha: 0,  ease: "expo.out"})
+              gsap.to(handsAnimation, {scale: 1.8, rotate: 70, duration: 4, filter:"blur(20px)",  ease: "expo.out", autoAlpha: 0})
               gsap.to(fougeresAnimation, {scale: 0.5,rotate: 100, duration:1, filter:"blur(20px)", autoAlpha: 0,  ease: "expo.out"})
               gsap.to(circle, {autoAlpha:0, duration: 0.3})
               gsap.to(red, {autoAlpha:0, duration: 0.3})
-              gsap.to(starsContainer, {filter:"blur(20px)", duration: 4, ease: "expo.out"})
+              gsap.to(starsContainer, {  filter:"blur(20px)", duration: 4, ease: "expo.out"})
+
+                this.state = true
 
           } else {
 
-              this.state = false
 
-              gsap.to(lys, {rotate: 0, scale: 1})
+              gsap.to(lys, {rotate: 0, scale: 1,  ease: "expo.out", })
               gsap.to(description, { autoAlpha: 1})
               gsap.to(fougeresAnimation, {scale:1, rotate: 0, duration: 2, filter:"blur(0px)", autoAlpha: 1,  ease: "expo.out"})
               gsap.to(eyeAnimation, {scale:1, rotate: 0, duration: 2,  filter:"blur(0px)",autoAlpha: 1,  ease: "expo.out"})
               gsap.to(starsContainer, {filter:"blur(0px)", scale: 1, rotate: 0, duration: 3, ease: "expo.out"})
               gsap.to(three, {autoAlpha: 0, scale: 0.5})
               gsap.to(leavesAnimation, {scale:1, rotate: 0, duration: 3,  ease: "expo.out", opacity: 1, filter:"blur(0px)"})
-              gsap.to(handsAnimation, {scale: 1, rotate: 0, duration: 2, filter:"blur(0px)", ease: "expo.out"})
+              gsap.to(handsAnimation, {scale: 1, rotate: 0, duration: 2.3, filter:"blur(0px)", ease: "expo.out",autoAlpha: 1 })
               gsap.to(circle, {autoAlpha:1, duration: 0.5})
               gsap.to(red, {autoAlpha: 1, duration: 0.3})
               gsap.to(starsContainer, {filter:"blur(0px)", duration: 2,  ease: "expo.out"})
+
+                this.state = false
 
           }   
   } 
 
     },
   	mounted() {
+
       const { red } = this.$refs;
       const { circle } = this.$refs;
       const { svg } = this.$refs
@@ -184,7 +196,8 @@ export default {
 }
 
 body {
-  overflow: hidden;
+  background-color: rgb(0, 0, 0);
+  overflow-y: hidden;
 }
 
 h1 {
@@ -200,6 +213,7 @@ h1 {
 }
 .stars__container {
   position: absolute;
+  /* z-index: 1; */
 }
 
 .scaleLeaves {
@@ -224,10 +238,11 @@ h1 {
 .absolute {
   width: 100%;
   top: 50%;
-    left: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   height: 100vh;
   position: absolute;
+  overflow: hidden;
 }
 
 .button {
@@ -253,6 +268,11 @@ width: 20%;
   z-index: 9998;
   color: black;
 }
+
+.footer {
+  z-index: 9999 !important;
+}
+
 
 
 </style>

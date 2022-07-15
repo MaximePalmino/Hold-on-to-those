@@ -14,6 +14,17 @@
         :position="{ x: 0, y: 0, z: 0 }"
         
       />
+       <!-- <NoisyImage
+        src="../a2146.jpeg"
+        :width="2000"
+        :height="1000"
+        :time-coef="0.0007"
+        :noise-coef="1000"
+        :z-coef="2"
+        :disp-coef="0.000"
+        :position="{ x: 0, y: 0, z: 5 }"
+        
+      /> -->
 
       <!-- https://images.unsplash.com/photo-1576174464184-fb78fe882bfd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80 -->
 <!-- https://images.unsplash.com/photo-1580432551600-8c9768628a9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=8 -->
