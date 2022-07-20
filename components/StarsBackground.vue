@@ -2,7 +2,7 @@
   <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: false, dampingFactor: 0.0050, autoRotate : true, autoRotateSpeed: 0.4 }" shadow >
     <Camera :position="{ y: -100, z: 100 }" />
     <Scene>
->
+
        <NoisyImage
         src="https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"
         :width="2000"
@@ -15,14 +15,37 @@
         
       />
        <!-- <NoisyImage
-        src="../a2146.jpeg"
-        :width="2000"
+        src="https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"
+        :width="500"
         :height="1000"
-        :time-coef="0.0007"
+        :time-coef="0.0001"
         :noise-coef="1000"
-        :z-coef="2"
+        :z-coef="700"
         :disp-coef="0.000"
         :position="{ x: 0, y: 0, z: 5 }"
+        
+      />  -->
+       <!-- <NoisyImage
+        src="../a2146.jpeg"
+        :width="500"
+        :height="1000"
+        :time-coef="0.0001"
+        :noise-coef="1000"
+        :z-coef="2000"
+        :disp-coef="0.000"
+        :position="{ x: 0, y: 0, z: 5 }"
+        
+      />  -->
+        <!-- <NoisyImage
+        src="../a2146.jpeg"
+        :width="1000"
+        :height="500"
+        :time-coef="0.0001"
+        :noise-coef="1000"
+        :z-coef="2000"
+        :disp-coef="0.005"
+        :position="{ x: 0, y: 0, z: 5 }"
+        :rotation="{x: 40, y:40, z:400}"
         
       /> -->
 
@@ -87,12 +110,17 @@ export default {
     NoisyImage,
     NoisyPlane
   },
+
+  props: {
+    camera: Number
+  },
   setup() {
     return {
       NUM_INSTANCES: 1200,
     };
   },
   mounted() {
+    console.log(this.x)
     const {noisyPlane } = this.$refs
     gsap.from( noisyPlane, {opacity: 0, autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
     console.log(noisyPlane)

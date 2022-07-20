@@ -1,25 +1,23 @@
 <template>
 
-
-
-
-
-  <div class="main-container" id="js-scroll"  data-scroll>
+  <div class="main-container" id="js-scroll"  @mousemove="onMouseMove">
     <div ref="starsContainer" class="stars__container" data-scroll data-scroll-speed="1" >
       <ClientOnly>
-            <StarsBackground />
+            <StarsBackground  />
       </ClientOnly>
     </div>
 
-   <p @click="test" ref="description" style="color: white">
+   <!-- <p @click="test" ref="description" style="color: white">
       2021 / maximepalminodesign
       MAXIME PALMINO
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p> 
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p>  -->
 
-
+    <h2>Works</h2>
     <div class="container-lys" ref="lysCircle">
+          <h2 ref="worksReveal">Works</h2>
+
       <img  @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" @click="test"  class="absolute button" ref="lys"
-        src="button-03.svg"
+        src="./assets/svg/button-03.svg"
         alt="triangle with all three sides equal" />
     </div>
 
@@ -61,13 +59,13 @@
 <script>
 import { Vue3Lottie } from 'vue3-lottie'
 import 'vue3-lottie/dist/style.css'
-import Flowers from './florale6.json'
-import Leaves from './coloredLeavesLoop.json'
+import Flowers from './assets/svg/florale6.json'
+import Leaves from './assets/svg/coloredLeavesLoop.json'
 import {gsap} from "gsap";
-import Hands from './hands.json'
-import Fougeres from'./fougereLoop.json'
-import Eye from './eyeAnimation.json'
-import Lys from './button-03.svg'
+import Hands from './assets/svg/hands.json'
+import Fougeres from'./assets/svg/fougereLoop.json'
+import Eye from './assets/svg/eyeAnimation.json'
+import Lys from './assets/svg/button-03.svg'
 
 
 
@@ -85,22 +83,40 @@ export default {
       Eye,
       state: false,
       eyeState: false,
-      galaxyBg: "../a2146.jpeg"
+      galaxyBg: "../a2146.jpeg",
+      x: 0
       
     }
   },
 
     methods: {
 
+      onMouseMove(e) {
+        this.x = e.clientX
+        console.log(this.x)
+      },
+
       lysHoverEnter() {
+
         const { lys } = this.$refs;
-         gsap.to(lys, {rotate: 180, ease: "expo.out", scale: 1.4, duration: 1})
+        const { worksReveal } = this.$refs;
+        const { lysCircle } = this.$refs;
+
+         gsap.to(lysCircle,{y: 20, duration: 1, ease: "expo.out",})
+         gsap.to(lys, { rotate: 180, ease: "expo.out", scale: 1.4, duration: 1})
+         gsap.to(worksReveal, { y: -50, ease: "expo.out", duration: 2, autoAlpha: 1})
 
       },
 
       lysHoverExit() {
         const { lys } = this.$refs;
+        const { worksReveal } = this.$refs;
+        const { lysCircle} = this.$refs;
+
+
+        gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
         gsap.to(lys, {rotate: 0, ease: "expo.out", scale: 1, duration: 1})
+        gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
 
       },
 
@@ -118,12 +134,17 @@ export default {
         const { fougeresAnimation } = this.$refs;
         const { eyeAnimation} = this.$refs;
         const { lys } = this.$refs;
+        const { worksReveal } = this.$refs;
+        const { lysCircle } = this.$refs;
 
 
           if (this.state === false) {
 
+              gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
+              gsap.to(lys, { rotate: 0, ease: "expo.out", scale: 1, duration: 1})
 
-              gsap.to(lys, { rotate: 0, ease: "expo.out", scale: 1})
+
+              gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
               gsap.to(description, { autoAlpha: 0, opacity: 0})
               gsap.to(three, {autoAlpha: 1, delay: 1.2, duration: 2, scale: 1})
               gsap.to(svg, {autoAlpha: 0})
@@ -139,8 +160,11 @@ export default {
 
           } else {
 
+              gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
+              gsap.to(lys, {rotate: 0, scale: 1,  ease: "expo.out", duration: 1 })
 
-              gsap.to(lys, {rotate: 0, scale: 1,  ease: "expo.out", })
+
+              gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
               gsap.to(description, { autoAlpha: 1})
               gsap.to(fougeresAnimation, {scale:1, rotate: 0, duration: 2, filter:"blur(0px)", autoAlpha: 1,  ease: "expo.out"})
               gsap.to(eyeAnimation, {scale:1, rotate: 0, duration: 2,  filter:"blur(0px)",autoAlpha: 1,  ease: "expo.out"})
@@ -149,7 +173,7 @@ export default {
               gsap.to(leavesAnimation, {scale:1, rotate: 0, duration: 3,  ease: "expo.out", opacity: 1, filter:"blur(0px)"})
               gsap.to(handsAnimation, {scale: 1, rotate: 0, duration: 2.3, filter:"blur(0px)", ease: "expo.out",autoAlpha: 1 })
               gsap.to(circle, {autoAlpha:1, duration: 0.5})
-              gsap.to(red, {autoAlpha: 1, duration: 0.3})
+              gsap.to(red, {autoAlpha: 1, duration: 1})
               gsap.to(starsContainer, {filter:"blur(0px)", duration: 2,  ease: "expo.out"})
 
                 this.state = false
@@ -171,6 +195,7 @@ export default {
       const { lys } = this.$refs;
       const { lysCircle } = this.$refs;
       const { starsContainer } = this.$refs;
+      const { worksReveal } = this.$refs;
 
       gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
       gsap.from( starsContainer, {autoAlpha: 0, rotate: 15, duration: 3.4, delay: 1.5, ease: "expo.out"})
@@ -183,6 +208,7 @@ export default {
       gsap.from(description, {autoAlpha: 0, duration: 1, delay: 1.9})
       gsap.from(red, {autoAlpha: 0, duration: 1, delay: 1.5});
       gsap.from(circle, {autoAlpha: 0, duration: 1, delay: 1.3,});
+      gsap.to(worksReveal, {autoAlpha: 0});
 
 	},
 }
@@ -198,10 +224,11 @@ export default {
 body {
   background-color: rgb(0, 0, 0);
   overflow-y: hidden;
+   font-family: 'Helvetica Neue'; font-size: 14px; font-weight: 200;
 }
 
 h1 {
-  color: white;
+  color: white
 }
 
 .main-container {
@@ -224,15 +251,16 @@ h1 {
 
 .container-lys {
   position: absolute;
-  width: 75px;
-  height: 75px;
-  top: 87%;
+  width: 70px;
+  height: 70px;
+  top: 86.5%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius:  50%;
   border:rgb(255, 255, 255) 1px solid;
   background-color: rgb(10, 10, 10);
   z-index: 9999 !important;
+  color: yellow;
 
 }
 .absolute {
