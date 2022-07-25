@@ -12,13 +12,14 @@
       MAXIME PALMINO
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p>  -->
 
-    <h2>Works</h2>
     <div class="container-lys" ref="lysCircle">
-          <h2 ref="worksReveal">Works</h2>
-
-      <img  @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" @click="test"  class="absolute button" ref="lys"
-        src="./assets/svg/button-03.svg"
+          <h2 ref="worksReveal">Enter</h2>
+  <NuxtLink to="home">
+          <img   @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" @click="test"  class="absolute button" ref="lys"
+        src="../assets/svg/button-03.svg"
         alt="triangle with all three sides equal" />
+
+  </NuxtLink>
     </div>
 
       <div   class="absolute" ref="leavesAnimation" >
@@ -47,11 +48,11 @@
   </div>
 
 </div>
-<!-- <div class="footer" data-scroll data-scroll-speed="1" >
+<div class="footer" data-scroll data-scroll-speed="1" >
 
 <Footer/>
 
-</div> -->
+</div>
 </template>
 
 
@@ -59,14 +60,16 @@
 <script>
 import { Vue3Lottie } from 'vue3-lottie'
 import 'vue3-lottie/dist/style.css'
-import Flowers from './assets/svg/florale6.json'
-import Leaves from './assets/svg/coloredLeavesLoop.json'
+import Flowers from '../assets/svg/florale6.json'
+import Leaves from '../assets/svg/coloredLeavesLoop.json'
 import {gsap} from "gsap";
-import Hands from './assets/svg/hands.json'
-import Fougeres from'./assets/svg/fougereLoop.json'
-import Eye from './assets/svg/eyeAnimation.json'
-import Lys from './assets/svg/button-03.svg'
+import Hands from '../assets/svg/hands.json'
+import Fougeres from'../assets/svg/fougereLoop.json'
+import Eye from '../assets/svg/eyeAnimation.json'
+import Lys from '../assets/svg/button-03.svg'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
 
 
 export default {
@@ -84,17 +87,23 @@ export default {
       state: false,
       eyeState: false,
       galaxyBg: "../a2146.jpeg",
-      x: 0
+      x: 0,
+      y: 0
       
     }
   },
 
     methods: {
 
-      onMouseMove(e) {
-        this.x = e.clientX
-        console.log(this.x)
-      },
+      // onMouseMove(e) {
+      //   this.x = e.clientX + 50
+      //   this.y = e.clientY
+
+      //   // const { eyeAnimation } = this.$refs;
+      //   // gsap.to(eyeAnimation, {duration: 3, rotation: window.innerWidth - (this.x + this.y), ease: "expo.out" })
+
+      //   console.log(this.x)
+      // },
 
       lysHoverEnter() {
 
@@ -148,7 +157,7 @@ export default {
               gsap.to(description, { autoAlpha: 0, opacity: 0})
               gsap.to(three, {autoAlpha: 1, delay: 1.2, duration: 2, scale: 1})
               gsap.to(svg, {autoAlpha: 0})
-              gsap.to(leavesAnimation, {scale: 0.7, rotation: -100,  duration:1,  ease: "expo.out", opacity: 0, filter:"blur(20px)"})
+              gsap.to(leavesAnimation, { scale: 0.7, rotation: -100,  duration:1,  ease: "expo.out", opacity: 0, filter:"blur(20px)"})
               gsap.to(eyeAnimation, { scale:0.5,rotate: 360, duration:1.5, autoAlpha: 0,  ease: "expo.out"})
               gsap.to(handsAnimation, {scale: 1.8, rotate: 70, duration: 4, filter:"blur(20px)",  ease: "expo.out", autoAlpha: 0})
               gsap.to(fougeresAnimation, {scale: 0.5,rotate: 100, duration:1, filter:"blur(20px)", autoAlpha: 0,  ease: "expo.out"})
@@ -200,7 +209,7 @@ export default {
       gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
       gsap.from( starsContainer, {autoAlpha: 0, rotate: 15, duration: 3.4, delay: 1.5, ease: "expo.out"})
       gsap.from( lysCircle, {autoAlpha: 0, rotate: 90, scale: 1.4, duration: 1, delay: 1.8})
-      gsap.from( leavesAnimation, {autoAlpha: 0,duration: 0.3, delay: 3.9})
+      gsap.from( leavesAnimation, { autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.from( fougeresAnimation, {autoAlpha: 0, duration: 1, delay: 2})
       gsap.from( eyeAnimation, {autoAlpha: 0, duration: 0.2, delay: 2})
       gsap.from( handsAnimation, {autoAlpha: 0, duration: 1, delay: 2})
@@ -223,7 +232,7 @@ export default {
 
 body {
   background-color: rgb(0, 0, 0);
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
    font-family: 'Helvetica Neue'; font-size: 14px; font-weight: 200;
 }
 
