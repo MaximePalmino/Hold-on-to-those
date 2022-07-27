@@ -1,58 +1,54 @@
 <template>
 
-  <div class="main-container" id="js-scroll"  @mousemove="onMouseMove">
-    <div ref="starsContainer" class="stars__container" data-scroll data-scroll-speed="1" >
+
+
+    <div class="scrollbar-track scrollbar-track-y">
+        <div class="scrollbar-thumb scrollbar-thumb-y"></div>
+    </div>
+  <div  ref="cont" class="main-container"  @mousemove="onMouseMove">
+    <div ref="starsContainer" class="stars__container" >
       <ClientOnly>
             <StarsBackground  />
       </ClientOnly>
     </div>
-
-   <!-- <p @click="test" ref="description" style="color: white">
-      2021 / maximepalminodesign
-      MAXIME PALMINO
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid vero porro aspernatur a lore?</p>  -->
-
-    <div class="container-lys" ref="lysCircle">
-          <h2 ref="worksReveal">Enter</h2>
-  <NuxtLink to="home">
-          <img   @mouseenter="lysHoverEnter" @mouseleave="lysHoverExit" @click="test"  class="absolute button" ref="lys"
-        src="../assets/svg/button-03.svg"
-        alt="triangle with all three sides equal" />
-
-  </NuxtLink>
-    </div>
-
-      <div   class="absolute" ref="leavesAnimation" >
+  <div>
+       <div class="absolute" ref="leavesAnimation" >
         <Vue3Lottie :animationData="Leaves"  :delay=4020 />
       </div>
-      <div  class="absolute" ref="fougeresAnimation" >
+      <div class="absolute" ref="fougeresAnimation" >
         <Vue3Lottie :animationData="Fougeres" :delay=2000    />
       </div>
+
       <div  class="absolute" ref="eyeAnimation" @click="eyeAnimationLoop">
-        <Vue3Lottie :animationData="Eye" :loop="false" :delay=2000   />
-      </div>
+        <Vue3Lottie  :animationData="Eye" :loop="false" :delay=2000   />
+        </div>
 
         <div class="absolute hands" ref="handsAnimation"  >
           <Vue3Lottie :animationData="Hands"  :delay=3000 width="100%"   />
-        </div>
+        </div> 
       <div class="absolute"  ref="svg">
         <Vue3Lottie :animationData="Flowers"  width="100%"  />
       </div>
+</div>
 
-
-  <div  ref="red">
+  <div   ref="red">
     <CircleText text="Hold on to those that make your soul shine" />
   </div>
   <div  ref="circle">
     <InvertCircleText />
   </div>
-
 </div>
-<div class="footer" data-scroll data-scroll-speed="1" >
 
-<Footer/>
 
+<div  ref="BITE"  class="bite">
+      <div class="description">
+      <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis consectetur totam cumque. Id ut blanditiis tempora expedita nulla nesciunt illum, ratione quam est fugit, sequi voluptas magni neque, veniam in.Quis consectetur totam cumque. Id ut blandi</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime iusto ipsam nostrum eius dicta, tempora quidem perspiciatis officia beatae reiciendis eligendi, quas sapiente labore est! Animi quasi reprehenderit velit adipisci.</p>
+    </div>
 </div>
+
+
+
 </template>
 
 
@@ -66,19 +62,17 @@ import {gsap} from "gsap";
 import Hands from '../assets/svg/hands.json'
 import Fougeres from'../assets/svg/fougereLoop.json'
 import Eye from '../assets/svg/eyeAnimation.json'
-import Lys from '../assets/svg/button-03.svg'
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 export default {
+
   components: {
     Vue3Lottie
   },
   data() {
     return {
-      Lys,
       Hands,
       Flowers,
       Leaves,
@@ -88,142 +82,91 @@ export default {
       eyeState: false,
       galaxyBg: "../a2146.jpeg",
       x: 0,
-      y: 0
+      y: 0,
+
       
     }
   },
 
     methods: {
 
-      // onMouseMove(e) {
-      //   this.x = e.clientX + 50
-      //   this.y = e.clientY
-
-      //   // const { eyeAnimation } = this.$refs;
-      //   // gsap.to(eyeAnimation, {duration: 3, rotation: window.innerWidth - (this.x + this.y), ease: "expo.out" })
-
-      //   console.log(this.x)
-      // },
-
-      lysHoverEnter() {
-
-        const { lys } = this.$refs;
-        const { worksReveal } = this.$refs;
-        const { lysCircle } = this.$refs;
-
-         gsap.to(lysCircle,{y: 20, duration: 1, ease: "expo.out",})
-         gsap.to(lys, { rotate: 180, ease: "expo.out", scale: 1.4, duration: 1})
-         gsap.to(worksReveal, { y: -50, ease: "expo.out", duration: 2, autoAlpha: 1})
-
-      },
-
-      lysHoverExit() {
-        const { lys } = this.$refs;
-        const { worksReveal } = this.$refs;
-        const { lysCircle} = this.$refs;
-
-
-        gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
-        gsap.to(lys, {rotate: 0, ease: "expo.out", scale: 1, duration: 1})
-        gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
-
-      },
-
-
-      test() {
-
-        const { svg } = this.$refs
-        const { circle } = this.$refs;
-        const { three } = this.$refs;
-		    const { red } = this.$refs;
-        const { starsContainer } = this.$refs;
-        const { description } = this.$refs;
-        const { leavesAnimation } = this.$refs;
-        const { handsAnimation } = this.$refs;
-        const { fougeresAnimation } = this.$refs;
-        const { eyeAnimation} = this.$refs;
-        const { lys } = this.$refs;
-        const { worksReveal } = this.$refs;
-        const { lysCircle } = this.$refs;
-
-
-          if (this.state === false) {
-
-              gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
-              gsap.to(lys, { rotate: 0, ease: "expo.out", scale: 1, duration: 1})
-
-
-              gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
-              gsap.to(description, { autoAlpha: 0, opacity: 0})
-              gsap.to(three, {autoAlpha: 1, delay: 1.2, duration: 2, scale: 1})
-              gsap.to(svg, {autoAlpha: 0})
-              gsap.to(leavesAnimation, { scale: 0.7, rotation: -100,  duration:1,  ease: "expo.out", opacity: 0, filter:"blur(20px)"})
-              gsap.to(eyeAnimation, { scale:0.5,rotate: 360, duration:1.5, autoAlpha: 0,  ease: "expo.out"})
-              gsap.to(handsAnimation, {scale: 1.8, rotate: 70, duration: 4, filter:"blur(20px)",  ease: "expo.out", autoAlpha: 0})
-              gsap.to(fougeresAnimation, {scale: 0.5,rotate: 100, duration:1, filter:"blur(20px)", autoAlpha: 0,  ease: "expo.out"})
-              gsap.to(circle, {autoAlpha:0, duration: 0.3})
-              gsap.to(red, {autoAlpha:0, duration: 0.3})
-              gsap.to(starsContainer, {  filter:"blur(20px)", duration: 4, ease: "expo.out"})
-
-                this.state = true
-
-          } else {
-
-              gsap.to(lysCircle,{y: 0, duration: 1, ease: "expo.out",})
-              gsap.to(lys, {rotate: 0, scale: 1,  ease: "expo.out", duration: 1 })
-
-
-              gsap.to(worksReveal, { y: 0, duration: 2,ease: "expo.out", autoAlpha: 0})
-              gsap.to(description, { autoAlpha: 1})
-              gsap.to(fougeresAnimation, {scale:1, rotate: 0, duration: 2, filter:"blur(0px)", autoAlpha: 1,  ease: "expo.out"})
-              gsap.to(eyeAnimation, {scale:1, rotate: 0, duration: 2,  filter:"blur(0px)",autoAlpha: 1,  ease: "expo.out"})
-              gsap.to(starsContainer, {filter:"blur(0px)", scale: 1, rotate: 0, duration: 3, ease: "expo.out"})
-              gsap.to(three, {autoAlpha: 0, scale: 0.5})
-              gsap.to(leavesAnimation, {scale:1, rotate: 0, duration: 3,  ease: "expo.out", opacity: 1, filter:"blur(0px)"})
-              gsap.to(handsAnimation, {scale: 1, rotate: 0, duration: 2.3, filter:"blur(0px)", ease: "expo.out",autoAlpha: 1 })
-              gsap.to(circle, {autoAlpha:1, duration: 0.5})
-              gsap.to(red, {autoAlpha: 1, duration: 1})
-              gsap.to(starsContainer, {filter:"blur(0px)", duration: 2,  ease: "expo.out"})
-
-                this.state = false
-
-          }   
-  } 
-
     },
+onBeforeMount() {
+
+},
   	mounted() {
+      
 
       const { red } = this.$refs;
       const { circle } = this.$refs;
       const { svg } = this.$refs
-      const { description } = this.$refs;
       const { leavesAnimation } = this.$refs;
       const { handsAnimation } = this.$refs;
       const { fougeresAnimation } = this.$refs;
       const { eyeAnimation } = this.$refs;
-      const { lys } = this.$refs;
-      const { lysCircle } = this.$refs;
       const { starsContainer } = this.$refs;
-      const { worksReveal } = this.$refs;
 
-      gsap.from( lys, {autoAlpha: 0, rotate: 90, duration: 1, delay: 2})
-      gsap.from( starsContainer, {autoAlpha: 0, rotate: 15, duration: 3.4, delay: 1.5, ease: "expo.out"})
-      gsap.from( lysCircle, {autoAlpha: 0, rotate: 90, scale: 1.4, duration: 1, delay: 1.8})
+
+      gsap.from( starsContainer, {autoAlpha: 0, rotate: 15, duration: 5, delay: 1.5, ease: "expo.out"})
       gsap.from( leavesAnimation, { autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.from( fougeresAnimation, {autoAlpha: 0, duration: 1, delay: 2})
-      gsap.from( eyeAnimation, {autoAlpha: 0, duration: 0.2, delay: 2})
-      gsap.from( handsAnimation, {autoAlpha: 0, duration: 1, delay: 2})
-      gsap.to( svg, {autoAlpha: 0, duration: 1, delay: 4})
-      gsap.from(description, {autoAlpha: 0, duration: 1, delay: 1.9})
+      gsap.fromTo( eyeAnimation, {autoAlpha: 0}, {autoAlpha: 1, duration: 0.2, delay: 3})
+      gsap.from( handsAnimation, {autoAlpha: 0, duration: 1, delay: 2,})
+      gsap.fromTo( svg, {autoAlpha: 0, scale: 1.2}, {scale:1, autoAlpha: 1, duration: 3,  ease: "expo.out"})
       gsap.from(red, {autoAlpha: 0, duration: 1, delay: 1.5});
       gsap.from(circle, {autoAlpha: 0, duration: 1, delay: 1.3,});
-      gsap.to(worksReveal, {autoAlpha: 0});
+
+
+
+      setTimeout(() => {
+              gsap.fromTo(svg, {autoAlpha:1}, {autoAlpha:0})
+
+              gsap.fromTo(eyeAnimation, {scale:1, autoAlpha: 1}, { scale: 0.7, rotation: -300, 
+              scrollTrigger: {
+                trigger: eyeAnimation,
+                // pin: true,
+                start: "top top",
+                scrub: 1,
+                markers:true
+                } });
+
+                gsap.fromTo(fougeresAnimation, {scale: 1, autoAlpha: 1} ,{scale: 0.3, rotate: 70,
+                      scrollTrigger: {
+                      trigger: fougeresAnimation,
+                      // pin: leavesAnimation,
+                      start: "top top",
+                      scrub: 2,
+                      markers:true
+                      } });
+          
+                gsap.fromTo(handsAnimation, {scale:1, rotate: 0, autoAlpha: 1},{rotate: 90, 
+                scrollTrigger: {
+                trigger: handsAnimation,
+                // pin: leavesAnimation,
+                start: "top top",
+                scrub: 1,
+                markers:true
+                }})
+
+                gsap.fromTo(starsContainer, {scale:1},{scale: 1.4, rotate: 30,
+                scrollTrigger: {
+                trigger:starsContainer,
+                // pin: leavesAnimation,
+                start: "top top",
+                scrub: 1,
+                markers:true
+                }})
+
+
+      }, 4202)
+
 
 	},
 }
 
 </script>
 <style>
+
 * {
   margin: 0;
   padding: 0;
@@ -231,25 +174,36 @@ export default {
 }
 
 body {
-  background-color: rgb(0, 0, 0);
-  /* overflow-y: hidden; */
+  /* background-color: rgb(0, 0, 0); */
+  overflow-x: hidden;
    font-family: 'Helvetica Neue'; font-size: 14px; font-weight: 200;
 }
 
 h1 {
-  color: white
+  color: white;
+  font-size: 60px;
+  line-height: 120%;
+  font-weight: 300;
+  width: 95%;
+}
+
+.description {
+  padding: 80px;
+}
+
+.description p {
+  line-height: 27px;
+  font-size: 20px;
+  width: 30%;
+  margin-top: 17vh;
+  color: white;
 }
 
 .main-container {
   position: relative;
-  height: 100vh;
+  height: 115vh;
   width: 100%;
   background-color: rgb(0, 0, 0);
-  
-}
-.stars__container {
-  position: absolute;
-  /* z-index: 1; */
 }
 
 .scaleLeaves {
@@ -258,58 +212,31 @@ h1 {
   filter: blur(20px);
 }
 
-.container-lys {
-  position: absolute;
-  width: 70px;
-  height: 70px;
-  top: 86.5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius:  50%;
-  border:rgb(255, 255, 255) 1px solid;
-  background-color: rgb(10, 10, 10);
-  z-index: 9999 !important;
-  color: yellow;
 
-}
 .absolute {
+  position: fixed;
   width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 100vh;
-  position: absolute;
+  position: fixed;
   overflow: hidden;
 }
 
-.button {
-  
-  width: 100%;
-  height: 75px;
-  z-index: 9999 !important;
 
-
-}
-.button:hover {
-  cursor: pointer;
-
-}
-
-p {
-
-  position: absolute;
-    top: 86%;
-  left: 2%;
-width: 20%;
-  font-family: 'Helvetica Neue', Arial; font-size: 16px;
-  z-index: 9998;
-  color: black;
-}
 
 .footer {
   z-index: 9999 !important;
 }
 
+.bite {
+  height: 100vh;
+  width: 100vw;
+  background: rgb(6, 6, 6);
+  z-index: 99999;
+  position: relative;
+}
 
-
+.stars__container { position: fixed}
 </style>

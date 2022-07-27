@@ -12,7 +12,8 @@
 .container {
     width: 100vw;
     height: 100vh;
-    background-color: rgb(4,4, 4);
+    background-color: rgb(0, 0, 0);
+    z-index: 9999 !important;
 }
 h1 {
     color: white
