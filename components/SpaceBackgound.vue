@@ -1,7 +1,7 @@
 <template>
   <Renderer :alpha="true"  ref="renderer" resize='window' :orbit-ctrl="{ enableDamping: false, dampingFactor: 0.0050, autoRotate : true, autoRotateSpeed: 0.4 }" shadow >
     <Camera :position="{ y: -100, z: 100 }" />
-    <Scene >
+    <Scene>
 
         <!-- <NoisyImage
         src="https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"
@@ -14,7 +14,7 @@
         :position="{ x: 0, y: 0, z: 0 }"
         
       /> -->
-       <!-- <NoisyImage
+       <NoisyImage
         src="https://images.unsplash.com/photo-1594683734152-0eccf2501041?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=786&q=80"
         :width="500"
         :height="1000"
@@ -23,9 +23,9 @@
         :z-coef="700"
         :disp-coef="0.000"
         :position="{ x: 0, y: 0, z: 5 }"
-        :rotation="{ x: 0, y: 0, z: 180 }"
+        :rotation="{ x: 0, y: 0, z: 0 }"
         
-      />  -->
+      /> 
        <!-- <NoisyImage
         src="../a2146.jpeg"
         :width="500"
@@ -60,7 +60,7 @@
       <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
-        <SphereGeometry :radius="0.5" />
+        <!-- <SphereGeometry :radius="0.5" /> -->
         <!-- <PlaneGeometry :width="10" :height="5" /> -->
         <PhongMaterial />
         

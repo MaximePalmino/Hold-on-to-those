@@ -16,9 +16,12 @@
   "dependencies": {
     "@troisjs/components": "^0.0.4",
     "gsap": "^3.10.4",
+    "gsap-trial": "^3.10.4",
     "sass": "^1.54.0",
+    "smooth-scrolling": "^2.3.12",
     "three": "^0.134.0",
     "troisjs": "^0.3.3",
+    "virtual-scroll": "^2.2.1",
     "vue3-lottie": "^2.2.5"
   }
 }
