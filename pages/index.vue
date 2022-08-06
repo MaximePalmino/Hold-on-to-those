@@ -4,7 +4,7 @@ import { Vue3Lottie } from 'vue3-lottie'
 import Flowers from '../assets/svg/florale6.json'
 import Leaves from '../assets/svg/coloredLeavesLoop.json'
 // import {gsap} from "gsap";
-import gsap from "gsap-trial";
+import gsap from "gsap";
 
 import Hands from '../assets/svg/hands.json'
 import Fougeres from'../assets/svg/fougereLoop.json'
@@ -17,78 +17,57 @@ import ScrollSmoother from 'gsap-trial/ScrollSmoother'
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 
-const state = false;
 const eyeState = false;
 const galaxyBg = "../a2146.jpeg";
-const x = 0;
-const y = 0
 
-
-let test= {};
 
 onMounted(() => {
 
 
+
       gsap.from( '.stars__container', {autoAlpha: 0, rotate: 15, duration: 5, delay: 1.5, ease: "expo.out"})
-      gsap.from( '.leavesAnimation', { autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.from( '.fougeresAnimation', {autoAlpha: 0, duration: 1, delay: 2})
+      gsap.from( '.leavesAnimation', { autoAlpha: 0,duration: 0.3, delay: 3.9})
       gsap.fromTo( '.eyeAnimation', {autoAlpha: 0}, {autoAlpha: 1, duration: 0.2, delay: 3})
       gsap.from( '.handsAnimation', {autoAlpha: 0, duration: 1, delay: 2,})
       gsap.fromTo( '.svg', {autoAlpha: 0, scale: 1.5}, {scale: 1, autoAlpha: 1, duration: 3,  ease: "expo.out"})
       gsap.from('.red', {autoAlpha: 0, duration: 1, delay: 1.5});
       gsap.from('.circle', {autoAlpha: 0, duration: 1, delay: 1.3,});
 
-              gsap.to('.description', { scale: 2,
-                scrollTrigger: {
-                  trigger: '.bite',
-                  pin:".bite",
-                  scrub: 5,
-                  start: "top top",
-                  // end: "+=1000",
-                  markers:true
-                } });
-              gsap.to('.description', { scale: 2,
-                scrollTrigger: {
-                  trigger: '.about',
-                  pin:".about",
-                  scrub: 5,
-                  start: "top top",
-                  // end: "+=1000",
+
+
+
+              gsap.fromTo('.skills-up', {x: -300, rotate: 10},{ x: 0, opacity: 1, rotate: 0,
+         scrollTrigger: {
+                  scrub: 1,
+                  end: "+=1000",
                   markers:true
                 } });
 
-              gsap.to('.un', { y: -500, 
-                scrollTrigger: {
-                  trigger: '.portfolio',
-                  pin:".portfolio",
-                  scrub: 0,
-                  start: "top top",
-                  // end: "+=1000",
-                  markers:true
-                } });
-              gsap.to('.deux', { y: 500, 
-                scrollTrigger: {
-                  trigger: '.portfolio',
-                  pin:".portfolio",
-                  scrub: 0,
-                  start: "top top",
-                  // end: "+=1000",
+
+              gsap.fromTo('.skills-down', {x: -100, rotate: 6.5},{ x: -400, opacity: 1, rotate: 0,
+         scrollTrigger: {
+                  scrub: 1,
+                  end: "+=1100",
                   markers:true
                 } });
 
-                gsap.fromTo('.stars__container', {scale:1},{scale: 1.8,
-                  scrollTrigger: {
-                    trigger:'.starsContainer',
-                    // pin: leavesAnimation,
-                    start: "top top",
-                    scrub: 1,
-                // markers:true
-                }})
+
+              gsap.fromTo('.stars__container', {x: 0}, { rotate: -70, scale: 1.2,
+                scrollTrigger: {
+                  scrub: 2,
+                  start: "top top",
+                  markers:true
+                } });
+
+
+
 
       setTimeout(() => {
+
               gsap.fromTo('.svg', {autoAlpha:1}, {autoAlpha:0})
 
-              gsap.fromTo('.eyeAnimation', {scale:1, autoAlpha: 1}, { scale: 0.7, rotation: -300, 
+              gsap.fromTo('.eyeAnimation', {scale:1, autoAlpha: 1, opacity:1}, { scale: 0.7, rotation: -300,
                       scrollTrigger: {
                         trigger: '.eyeAnimation',
                         start: "top top",
@@ -132,8 +111,9 @@ onMounted(() => {
 
 
 <div class="smooth">
+  <NuxtLink to="courses">COURSES
   <div  ref="cont" class="main-container"  @mousemove="onMouseMove" >
-    <div ref="starsContainer" class="stars__container" >
+    <div ref="starsContainer" class="stars__container">
       <ClientOnly>
             <StarsBackground  />
       </ClientOnly>
@@ -157,7 +137,6 @@ onMounted(() => {
         <Vue3Lottie :animationData="Flowers"  width="100%"  />
       </div>
 </div>
-
   <div   class="red">
     <CircleText text="Hold on to those that make your soul shine" />
   </div>
@@ -166,6 +145,7 @@ onMounted(() => {
   </div>
 
 </div>
+</NuxtLink>
 
 <!-- <div  class="bite">
       <div class="description">
@@ -173,25 +153,22 @@ onMounted(() => {
       <p class="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime iusto ipsam nostrum eius dicta, tempora quidem perspiciatis officia beatae reiciendis eligendi, quas sapiente labore est! Animi quasi reprehenderit velit adipisci.</p>
     </div>
 </div> -->
-<div  class="bite">
-      <div class="description">
-      <h1 class="title">Works</h1>
+<div class="portfolio">
+
+  <div class="skills">
+    
+    <h2 class="skills-up">UX DESIGN / CREATIVE / FRONT-END / CREATIVE / FRONT-END / CREATIVE / FRONT-END</h2>
+    <h2 class="skills-down">UX DESIGN / CREATIVE / FRONT-END / CREATIVE / FRONT-END</h2>
+  </div>
+    <div class="works-section">
+      <Works />
     </div>
 </div>
 
-<div   class="portfolio">
-      <div class="works-un">
-          <img class="un" src="https://zen-lamarr-afa608.netlify.app/static/media/Burger.9dd1eb88.jpg" />
-          <img class="deux" src="https://images.unsplash.com/photo-1659425757127-ccbf96c59163?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=993&q=80" />
-    </div>
-</div>
-<div  class="bite">
-      <div class="description">
-      <h1 class="title">About</h1>
-    </div>
-</div>
 
 </div>
+
+
 
 </template>
 
@@ -208,7 +185,7 @@ onMounted(() => {
 body {
   /* background-color: rgb(0, 0, 0); */
   overflow-x: hidden;
-  font-family: 'Helvetica Neue'; font-size: 14px; font-weight: 200;
+  font-family: 'Ginger'; font-size: 14px; font-weight: 200;
   background: black;
 }
 
@@ -219,6 +196,17 @@ h1 {
   font-weight: 300;
   font-weight: 500;
   /* width: 95%; */
+  
+}
+h2 {
+  /* background: -webkit-linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ */
+
+ color: #FFE000;
+
 }
 
 .description {
@@ -245,7 +233,7 @@ h1 {
 
 .main-container {
   position: relative;
-  height: 115vh;
+  height: 110vh;
   width: 100%;
   background-color: rgb(0, 0, 0);
 }
@@ -273,37 +261,56 @@ h1 {
   z-index: 9999 !important;
 }
 
-.bite {
-
-  height: 100vh;
+.portfolio{
+margin-top: 50px;
+  height: 200vh;
   width: 100vw;
-  background: #0f0f0f;
-  /* background: #ffffff; */
-  /* #f47c7c */
-  
   z-index: 99999;
   position: relative;
 }
 
-.stars__container { position: fixed; width: 100vw; height: 100vh;}
+.stars__container { position:fixed; }
 
-.portfolio {
-  background-color: #000000;
-  height: 100vh;
-  width: 100vw;
-    /* z-index: 99999; */
-  position: relative;
-
-}
-.works-un {
+.skills {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  width: 200%;
+  height: 50vh;
+  font-size: 60px;
+  background: #080808;
+
+
 }
-.works-un img {
+.skills-down {
+    font-size: 110px;
+
+    padding-top: 10px;
+  font-family: 'Ginger'; font-weight: bold; color: #FFE000 !important;
+  border-bottom: #FFE000 solid 6px;
+  border-top: #FFE000 solid 6px;}
+.skills-up {
+  font-weight: light;
+  font-size: 50px;
+  /* border-bottom: #FFE000 solid 1px; */
+  border-top: #FFE000 solid 1px;
+}
+
+.works-section {
+  margin-top: 18em;
+  display: flex;
+  -ms-flex-align: end;
+  justify-content: center;
+  align-items: end;
+  flex-direction: column;
+  width: 100vw;
+  height: 50vh;
+ flex-basis: 1fr;
+
+}
+
+.bg-ref {
   width: 100vw;
   height: 100vh;
-  object-fit: cover;
-
 }
-
 </style>

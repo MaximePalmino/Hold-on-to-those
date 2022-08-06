@@ -8,7 +8,7 @@
     <circle cx="150" cy="100" r="75" fill="none"/>
     <g>
         <use xlink:href="#circlePath" fill="none"/>
-        <text >
+        <text fill="white" >
             <textPath xlink:href="#circlePath">{{text}}</textPath>
         </text>
     </g>
@@ -35,9 +35,9 @@ export default {
     transform: translate(-50%, -50%);  overflow: hidden;
  }
 
-#circle text { font-family: 'Helvetica Neue', Arial; font-size: 16px; font-weight: bold; stroke: white;  stroke-width: 0.4;  fill: rgba(0,0,0,0); }
+#circle text { font-family: 'Ginger', Arial; font-size: 19px; font-weight: bold;  }
 
-#circle svg { width: 80vw; height: 100vh;
+#circle svg { width: 60vw; height: 100vh;
 
   -webkit-animation-name: rotate;
      -moz-animation-name: rotate;
