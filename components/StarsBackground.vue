@@ -60,7 +60,7 @@
       <SpotLight color="blue" :intensity="0.8" :position="{ y: -100, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <SpotLight color="pink" :intensity="0.5" :position="{ y: -10, z: 0 }" :cast-shadow="true" :shadow-map-size="{ width: 1024, height: 1024 }" />
       <InstancedMesh ref="imesh" :count="NUM_INSTANCES" :cast-shadow="true" :receive-shadow="true">
-        <SphereGeometry :radius="0.5" />
+        <SphereGeometry :radius="0.4" />
         <!-- <PlaneGeometry :width="10" :height="5" /> -->
         <PhongMaterial />
         
@@ -70,7 +70,7 @@
     </Scene>
     <EffectComposer>
        <RenderPass />
-      <UnrealBloomPass :strength="1" /> 
+      <UnrealBloomPass :strength="2" /> 
       <!-- <UnrealBloomPass :strength="2" />  -->
     </EffectComposer>
   </Renderer>
@@ -119,7 +119,7 @@ export default {
   },
   setup() {
     return {
-      NUM_INSTANCES: 1200,
+      NUM_INSTANCES: 2000,
     };
   },
   mounted() {

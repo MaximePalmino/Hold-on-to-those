@@ -37,11 +37,11 @@ const works = [
 ]
 
 onMounted(() => {
-                  gsap.fromTo('.works', {opacity:0, rotate: -20},{ opacity:1, rotate: 0,  ease:"none",
+                  gsap.fromTo('.works', {opacity:0, rotate: -15},{ opacity:1, rotate: 0,  
                 scrollTrigger: {
-                  scrub: 4,
-                  start: "300 300",
-                  end: "800",
+                  scrub: 1,
+                  start: "+=300",
+                  end: "+=1000",
                   markers:true
                 } });
 })

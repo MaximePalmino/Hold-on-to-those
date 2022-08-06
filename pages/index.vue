@@ -55,8 +55,16 @@ onMounted(() => {
 
               gsap.fromTo('.stars__container', {x: 0}, { rotate: -70, scale: 1.2,
                 scrollTrigger: {
-                  scrub: 2,
+                  scrub: 1,
                   start: "top top",
+                  markers:true
+                } });
+
+              gsap.fromTo('.container__svg', {}, {  opacity: 0,
+                scrollTrigger: {
+                  scrub: 1,
+                  start: "+=430",
+                  end: "+=440",
                   markers:true
                 } });
 
@@ -118,7 +126,7 @@ onMounted(() => {
             <StarsBackground  />
       </ClientOnly>
     </div>
-  <div>
+  <div class="container__svg">
        <div class="absolute leavesAnimation">
         <Vue3Lottie :animationData="Leaves"  :delay=4020 />
       </div>
@@ -136,13 +144,13 @@ onMounted(() => {
       <div class="absolute svg">
         <Vue3Lottie :animationData="Flowers"  width="100%"  />
       </div>
-</div>
   <div   class="red">
     <CircleText text="Hold on to those that make your soul shine" />
   </div>
   <div  class="circle">
     <InvertCircleText />
   </div>
+</div>
 
 </div>
 </NuxtLink>
