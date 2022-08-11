@@ -4,7 +4,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const works = [
+let works = [
     {
         title: 'Shary',
         year: '2022',
@@ -36,6 +36,8 @@ const works = [
     },
 ]
 
+
+
 onMounted(() => {
                   gsap.fromTo('.works', {opacity:0, rotate: -15},{ opacity:1, rotate: 0,  
                 scrollTrigger: {
@@ -55,6 +57,7 @@ onMounted(() => {
     <h2>{{name.year}}</h2>
     <h2>{{name.arrow}}</h2>
 </div>
+<button>click</button>
 </template>
 
 <style scoped>
@@ -78,6 +81,7 @@ onMounted(() => {
 }
 h1 {
     color: white;
+    width: 15%;
 }
 
 </style>

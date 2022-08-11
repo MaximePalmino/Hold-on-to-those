@@ -30,6 +30,7 @@ const restaurant = ref<any>({
     },
   },
 
+
   order: function(starterIndex, mainIndex){
     console.log([this.starterMenu[starterIndex], this.mainMenu[mainIndex]])
     return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]]
@@ -37,28 +38,18 @@ const restaurant = ref<any>({
   },
 
 });
-function yes(un, deux) {
-restaurant.value.order(un, deux);
 
-    console.log(un, deux)
+const arr = [1,2,3]
+  console.log([...arr, 'yes'])
 
-}
-onMounted(() => {
+const Max = [...arr, 'name']
+console.log(Max, arr)
 
-for(let i = 1; i <= 100; i++){
- 
-                console.log(i)
-
-    }
-})
-function nope() {
     
-}
 </script>
 
 <template>
 <form v-on:submit.prevent>
-    <h1 @click="yes(index, index)" v-for="(value, name, index) in restaurant">{{index}} {{index}}</h1>
 </form>
 </template>
 

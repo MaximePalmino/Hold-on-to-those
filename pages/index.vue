@@ -37,7 +37,7 @@ onMounted(() => {
 
 
 
-              gsap.fromTo('.skills-up', {x: -300, rotate: 10},{ x: 0, opacity: 1, rotate: 0,
+              gsap.fromTo('.skills-up', {x: -300, rotate: 10},{ x: 0, opacity: 1, rotate: 0, 
          scrollTrigger: {
                   scrub: 1,
                   end: "+=1000",
@@ -65,6 +65,25 @@ onMounted(() => {
                   scrub: 1,
                   start: "+=430",
                   end: "+=440",
+                  markers:true
+                } });
+
+              gsap.fromTo('.about', {}, {  background:'white', color:'black',  ease: "expo.out",
+                scrollTrigger: {
+                  trigger:'.about',
+                  scrub: 1,
+                  start: "-=430",
+                  end: ".about",
+                  markers:true,
+                  pin: true
+                } });
+              gsap.fromTo('.skills', {}, {  background:'white', color: 'black', ease: "expo.out",
+                scrollTrigger: {
+                  trigger:'.about',
+                  scrub: 1,
+                  start: "-=430",
+                  end: ".about",
+                  // end: "+=440",
                   markers:true
                 } });
 
@@ -168,11 +187,22 @@ onMounted(() => {
     <h2 class="skills-up">UX DESIGN / CREATIVE / FRONT-END / CREATIVE / FRONT-END / CREATIVE / FRONT-END</h2>
     <h2 class="skills-down">UX DESIGN / CREATIVE / FRONT-END / CREATIVE / FRONT-END</h2>
   </div>
+  <div class="about">
+    <h1>INTERACTIVE</h1>
+    <p>I'm Maxime Palmino. A French Creative Developer and 3D Generalist available for freelance work.
+I've always been passionate about 3D stuff, realtime, pre-rendered or augmented.
+
+In my never ending quest of making cool projects, I had the chance to use and love multiple technologies and softwares like: Unity, Javascript, WebGL, Swift, SceneKit, ARkit, C4D, Houdini, Smode, Substance Painter, Processing, etc...
+</p>
+  </div>
     <div class="works-section">
       <Works />
     </div>
 </div>
+<div class="reel">
 
+  
+</div>
 
 </div>
 
@@ -320,5 +350,30 @@ margin-top: 50px;
 .bg-ref {
   width: 100vw;
   height: 100vh;
+}
+
+.about {
+  width: 100vw;
+  height: 120vh;
+  color: white;
+  /* font-family: 'helvetica'; */
+  padding: 80px;
+    background: #080808;
+
+}
+
+.about h1 {
+  font-size: 150px;
+  letter-spacing: 30px;
+}
+
+.about p {
+  font-size: 40px;
+  font-family: 'helvetica';
+  padding-left: 400px;
+  padding-top: 90px;
+  line-height: 1.5em;
+  text-align: justify;
+  
 }
 </style>
